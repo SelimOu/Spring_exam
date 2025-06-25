@@ -4,7 +4,7 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: electricity_business
+      MYSQL_DATABASE: taskmanager
       MYSQL_USER: springuser
       MYSQL_PASSWORD: springpassword
       MYSQL_ROOT_HOST: '%'
@@ -19,13 +19,13 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./exam
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/electricity_business
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/taskmanager
       - SPRING_DATASOURCE_USERNAME=springuser
       - SPRING_DATASOURCE_PASSWORD=springpassword
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update

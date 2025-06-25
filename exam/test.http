@@ -1,0 +1,69 @@
+### Créer un utilisateur
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "username": "alice"
+}
+
+###
+
+### Afficher un utilisateur 
+GET http://localhost:8080/api/users/1
+
+###
+
+### Lister les utilisateurs
+GET http://localhost:8080/api/users
+###
+
+### Tâches assignées à l’utilisateur
+GET http://localhost:8080/api/users/1/tasks
+
+###
+
+
+### Créer un projet 
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+
+{
+  "name": "Projet 1",
+  "creatorId": 1
+}
+
+### Projets créés par l’utilisateur
+GET http://localhost:8080/api/users/1/projects
+
+
+###
+
+### Détails d’un projet avec ses tâches
+GET http://localhost:8080/api/projects/1
+
+###
+
+
+### Creer une tâche
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Tâche 1",
+  "projectId": 1,
+  "assigneeId": 1
+}
+
+###
+
+### Modifier le statut d’une tâche 
+PATCH http://localhost:8080/api/tasks/1
+Content-Type: application/json
+
+{
+  "status": "IN_PROGRESS"
+}
+
+### Lister les tches d’un projet
+GET http://localhost:8080/api/projects/1/tasks
+
