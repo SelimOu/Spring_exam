@@ -18,9 +18,9 @@ import com.example.exam.repository.ProjectRepository;
 import com.example.exam.repository.TaskRepository;
 import com.example.exam.repository.UserRepository;
 
-@RestController
-@RequestMapping("/api/tasks")
-public class TaskController {
+    @RestController
+    @RequestMapping("/api/tasks")
+    public class TaskController {
     private final TaskRepository taskRepository;
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
@@ -31,13 +31,13 @@ public class TaskController {
         this.userRepository = userRepository;
     }
 
-   @PostMapping
-public ResponseEntity<Task> createTask(@RequestBody TaskDTO dto) {
+    @PostMapping
+    public ResponseEntity<Task> createTask(@RequestBody TaskDTO dto) {
     var projectOpt = projectRepository.findById(dto.getProjectId());
     var userOpt = userRepository.findById(dto.getAssigneeId());
     if (projectOpt.isEmpty() || userOpt.isEmpty()) {
         return ResponseEntity.badRequest().build();
-    }
+    }  
     Task task = new Task();
     task.setTitle(dto.getName());
     task.setStatus(TaskStatus.TODO);
@@ -46,8 +46,8 @@ public ResponseEntity<Task> createTask(@RequestBody TaskDTO dto) {
     return ResponseEntity.ok(taskRepository.save(task));
 }
 
-@PatchMapping("/{id}")
-public ResponseEntity<Task> updateTaskStatus(@PathVariable Long id, @RequestBody TaskStatusDTO dto) {
+    @PatchMapping("/{id}")
+    public ResponseEntity<Task> updateTaskStatus(@PathVariable Long id, @RequestBody TaskStatusDTO dto) {
     Optional<Task> taskOpt = taskRepository.findById(id);
     if (taskOpt.isEmpty()) {
         return ResponseEntity.notFound().build();
